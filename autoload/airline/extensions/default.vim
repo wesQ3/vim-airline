@@ -20,7 +20,8 @@ function! s:get_section(winnr, key, ...)
   endif
   let spc = g:airline_symbols.space
   let text = airline#util#getwinvar(a:winnr, 'airline_section_'.a:key, g:airline_section_{a:key})
-  let [prefix, suffix] = [get(a:000, 0, '%('.spc), get(a:000, 1, spc.'%)')]
+  let prefix = get(a:000, 0, '%('.spc)
+  let suffix = get(a:000, 1, spc.'%)')
   return empty(text) ? '' : prefix.text.suffix
 endfunction
 
