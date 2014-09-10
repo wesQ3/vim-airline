@@ -6,6 +6,10 @@ endif
 
 let s:spc = g:airline_symbols.space
 
+if !exists('g:airline#extensions#windowswap#indicator_text')
+  let g:airline#extensions#windowswap#indicator_text = 'WS'
+endif
+
 function! airline#extensions#windowswap#init(ext)
   call airline#parts#define_function('windowswap', 'airline#extensions#windowswap#get_status')
 endfunction
@@ -13,7 +17,7 @@ endfunction
 " Finally, this function will be invoked from the statusline.
 function! airline#extensions#windowswap#get_status()
   if WindowSwap#HasMarkedWindow() && WindowSwap#GetMarkedWindowNum() == winnr()
-    return 'WS'.s:spc
+    return g:airline#extensions#windowswap#indicator_text.s:spc
   endif
   return ''
 endfunction
